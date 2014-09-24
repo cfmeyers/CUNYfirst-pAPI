@@ -17,34 +17,34 @@ class DepartmentsController < ApplicationController
 
   # POST /departments
   # POST /departments.json
-  def create
-    @department = Department.new(params[:department])
+  # def create
+  #   @department = Department.new(params[:department])
 
-    if @department.save
-      render json: @department, status: :created, location: @department
-    else
-      render json: @department.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @department.save
+  #     render json: @department, status: :created, location: @department
+  #   else
+  #     render json: @department.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # PATCH/PUT /departments/1
-  # PATCH/PUT /departments/1.json
-  def update
-    @department = Department.find(params[:id])
+  # # PATCH/PUT /departments/1
+  # # PATCH/PUT /departments/1.json
+  # def update
+  #   @department = Department.find(params[:id])
 
-    if @department.update(params[:department])
-      head :no_content
-    else
-      render json: @department.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @department.update(params[:department])
+  #     head :no_content
+  #   else
+  #     render json: @department.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /departments/1
-  # DELETE /departments/1.json
-  def destroy
-    @department = Department.find(params[:id])
-    @department.destroy
+  # # DELETE /departments/1
+  # # DELETE /departments/1.json
+  # def destroy
+  #   @department = Department.find(params[:id])
+  #   @department.destroy
 
-    head :no_content
-  end
+  #   head :no_content
+  # end
 end
