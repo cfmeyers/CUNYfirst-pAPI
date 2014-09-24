@@ -20,6 +20,11 @@ for their respective collection views and
 
 for elements within the collection (replace "1" with the element-id of your choice).
 
+To search sections by course id, use
+-  http://calm-falls-3644.herokuapp.com/sections?course_id=4
+
+(replace "4" with the course-id of your choice).
+
 #TODO
 
 [ ]  Add tests
