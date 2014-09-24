@@ -1,6 +1,6 @@
 #CUNYfirst-pAPI
 
-##Built with love by Queens College CSCI 370, Group C
+###Built with love by Queens College CSCI 370, Group C
 
 This "pseudo-API" is being built to provide easier access to CUNYfirst course registration data using a JSON RESTful API.  It is currently filled with a small amount of seed data pulled from off the internet.  In time it will be filled with data parsed from the actual CUNYfirst database.
 
@@ -21,6 +21,8 @@ for their respective collection views and
 for elements within the collection (replace "1" with the element-id of your choice).
 
 #TODO
+
+[ ]  Add tests
 
 [ ]  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
 
