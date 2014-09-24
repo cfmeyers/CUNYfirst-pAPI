@@ -11,18 +11,21 @@ Thus far the Institutions, Departments, Courses, and Sections resources have bee
 -  http://calm-falls-3644.herokuapp.com/sections
 
 for their respective collection views and 
--  http://calm-falls-3644.herokuapp.com/1
--  http://calm-falls-3644.herokuapp.com/1
--  http://calm-falls-3644.herokuapp.com/1
--  http://calm-falls-3644.herokuapp.com/1
+-  http://calm-falls-3644.herokuapp.com/institutions/1
+-  http://calm-falls-3644.herokuapp.com/departments/1
+-  http://calm-falls-3644.herokuapp.com/courses/1
+-  http://calm-falls-3644.herokuapp.com/sections/1
 
 for elements within the collection (replace "1" with the element-id of your choice).
 
 #TODO
 
 []  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
+
 []  Add pagination (so you can specify "I just want the first 30 courses")
+
 []  Add actual data from CUNYfirst database
+
 []  Change field names and resource names so they match those used by CUNYfirst database
 
 #Tips
