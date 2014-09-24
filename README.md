@@ -20,13 +20,13 @@ for elements within the collection (replace "1" with the element-id of your choi
 
 #TODO
 
-[]  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
+[ ]  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
 
-[]  Add pagination (so you can specify "I just want the first 30 courses")
+[ ]  Add pagination (so you can specify "I just want the first 30 courses")
 
-[]  Add actual data from CUNYfirst database
+[ ]  Add actual data from CUNYfirst database
 
-[]  Change field names and resource names so they match those used by CUNYfirst database
+[ ]  Change field names and resource names so they match those used by CUNYfirst database
 
 #Tips
 The data from these URLs is in [JSON](http://en.wikipedia.org/wiki/JSON) format.  In order to make it easier to read in the browser you might want to download a plugin.  If you're using the Chrome browser, try [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc/related?hl=en).
