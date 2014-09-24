@@ -1,8 +1,10 @@
 #CUNYfirst-pAPI
 
+##Built with love by Queens College CSCI 370, Group C
+
 This "pseudo-API" is being built to provide easier access to CUNYfirst course registration data using a JSON RESTful API.  It is currently filled with a small amount of seed data pulled from off the internet.  In time it will be filled with data parsed from the actual CUNYfirst database.
 
-The current proof-of-concept is being hosted at http://calm-falls-3644.herokuapp.com/ .
+The current proof-of-concept is being hosted at on heroku.
 
 Thus far the Institutions, Departments, Courses, and Sections resources have been created.  They can be accessed at these endpoints:
 -  http://calm-falls-3644.herokuapp.com/institutions
