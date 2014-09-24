@@ -2,7 +2,7 @@
 
 ###Built with love by Queens College CSCI 370, Group C
 
-This "pseudo-API" is being built to provide easier access to CUNYfirst course registration data using a JSON RESTful API.  It is currently filled with a small amount of seed data pulled from off the internet.  In time it will be filled with data parsed from the actual CUNYfirst database.
+This "pseudo-API" is being built with [Rails::API](https://github.com/rails-api/rails-api) to provide easier access to CUNYfirst course registration data using a JSON RESTful API.  It is currently filled with a small amount of seed data pulled from off the internet.  In time it will be filled with data parsed from the actual CUNYfirst database.
 
 The current proof-of-concept is being hosted at on heroku.
 
