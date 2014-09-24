@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :courses, except: [:new, :edit]
   resources :departments, except: [:new, :edit]
   resources :institutions, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
