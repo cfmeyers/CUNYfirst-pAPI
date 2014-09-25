@@ -1,7 +1,5 @@
 #CUNYfirst-pAPI
 
-###Built with love by Queens College CSCI 370, Group C
-
 This "pseudo-API" is being built with [Rails::API](https://github.com/rails-api/rails-api) to provide easier access to CUNYfirst course registration data using a JSON RESTful API.  It is currently filled with a small amount of seed data pulled from off the internet.  In time it will be filled with data parsed from the actual CUNYfirst database.
 
 The current proof-of-concept is being hosted at on heroku.
@@ -24,6 +22,13 @@ To search sections by course id, use
 -  http://calm-falls-3644.herokuapp.com/sections?course_id=4
 
 (replace "4" with the course-id of your choice).
+
+Asking for an element that does not exist will result in a 404 error:
+~~~
+{
+message: "Resource not found"
+}
+~~~
 
 #TODO
 
