@@ -17,6 +17,10 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
 
     render json: @section
+
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
+
   end
 
   # POST /sections

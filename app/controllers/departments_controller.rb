@@ -13,6 +13,9 @@ class DepartmentsController < ApplicationController
     @department = Department.find(params[:id])
 
     render json: @department
+
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
   end
 
   # POST /departments

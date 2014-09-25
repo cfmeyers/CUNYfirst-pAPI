@@ -13,6 +13,10 @@ class InstitutionsController < ApplicationController
     @institution = Institution.find(params[:id])
 
     render json: @institution
+
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
+
   end
 
   # # POST /institutions
