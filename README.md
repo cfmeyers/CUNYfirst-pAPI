@@ -27,17 +27,36 @@ To search sections by course id, use
 
 #TODO
 
+[ ]  Add actual data from CUNYfirst database
+
 [ ]  Add tests
 
 [ ]  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
 
 [ ]  Add pagination (so you can specify "I just want the first 30 courses")
 
-[ ]  Add actual data from CUNYfirst database
 
 [ ]  Change field names and resource names so they match those used by CUNYfirst database
 
-[ ]  Add error message if no resources returned
+[X]  Add error message if no resources returned
 
 #Tips
 The data from these URLs is in [JSON](http://en.wikipedia.org/wiki/JSON) format.  In order to make it easier to read in the browser you might want to download a plugin.  If you're using the Chrome browser, try [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc/related?hl=en).
+
+##Using the API
+
+###cURL
+
+If you're on a *nix machine, say OS X, you can use the command line utility cURL to test what you're getting from the API.
+
+On the command line enter
+
+~~~
+curl "http://calm-falls-3644.herokuapp.com/sections?course_id=4"
+~~~
+
+You should get back
+
+~~~
+[{"id":7,"days":"TTH","start_time":"2000-01-01T20:30:00.000Z","end_time":"2000-01-01T21:20:00.000Z","cfid":"46015","course_id":4,"created_at":"2014-09-24T08:00:55.573Z","updated_at":"2014-09-24T08:00:55.573Z"},{"id":8,"days":"TTH","start_time":"2000-01-01T19:30:00.000Z","end_time":"2000-01-01T20:20:00.000Z","cfid":"46014","course_id":4,"created_at":"2014-09-24T08:00:55.581Z","updated_at":"2014-09-24T08:00:55.581Z"},{"id":9,"days":"TTH","start_time":"2000-01-01T18:30:00.000Z","end_time":"2000-01-01T19:20:00.000Z","cfid":"46016","course_id":4,"created_at":"2014-09-24T08:00:55.589Z","updated_at":"2014-09-24T08:00:55.589Z"}]
+~~~
