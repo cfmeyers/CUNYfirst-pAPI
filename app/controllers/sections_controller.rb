@@ -9,6 +9,10 @@ class SectionsController < ApplicationController
       @sections = Section.all
       render json: @sections
     end
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # GET /sections/1
@@ -18,8 +22,8 @@ class SectionsController < ApplicationController
 
     render json: @section
 
-    rescue ActiveRecord::RecordNotFound
-      render json: {message: 'Resource not found'}, status: 404
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
 
   end
 

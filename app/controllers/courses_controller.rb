@@ -5,6 +5,11 @@ class CoursesController < ApplicationController
     @courses = Course.all
 
     render json: @courses
+
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # GET /courses/1

@@ -5,6 +5,11 @@ class InstitutionsController < ApplicationController
     @institutions = Institution.all
 
     render json: @institutions
+
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # GET /institutions/1
@@ -14,8 +19,8 @@ class InstitutionsController < ApplicationController
 
     render json: @institution
 
-    rescue ActiveRecord::RecordNotFound
-      render json: {message: 'Resource not found'}, status: 404
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
 
   end
 

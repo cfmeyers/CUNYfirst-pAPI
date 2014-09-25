@@ -5,6 +5,11 @@ class DepartmentsController < ApplicationController
     @departments = Department.all
 
     render json: @departments
+
+    rescue ActiveRecord::RecordNotFound
+      render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # GET /departments/1
