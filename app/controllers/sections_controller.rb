@@ -5,14 +5,45 @@ class SectionsController < ApplicationController
     if params[:course_id]
       course = Course.find(params[:course_id])
       render json: Section.where(course: course)
+      
     elsif params[:start_after]
       start_after = params[:start_after]
       if /^\d\d:\d\d$/.match(start_after)
         @sections = Section.where("start_time > ?", start_after)
         render json: @sections
       else
-        render json: {message: 'Badly formatted query.  Must be of form HH:MM'}, status: 404
+        render json: {message: 'Badly formatted query.  Must be of form HH:MM'}, status: 400
       end
+
+    elsif params[:start_before]
+      start_before = params[:start_before]
+      if /^\d\d:\d\d$/.match(start_before)
+        @sections = Section.where("start_time < ?", start_before)
+        render json: @sections
+      else
+        render json: {message: 'Badly formatted query.  Must be of form HH:MM'}, status: 400
+      end
+
+    elsif params[:end_after]
+      end_after = params[:end_after]
+      if /^\d\d:\d\d$/.match(end_after)
+        @sections = Section.where("end_time > ?", end_after)
+        render json: @sections
+      else
+        render json: {message: 'Badly formatted query.  Must be of form HH:MM'}, status: 400
+      end
+
+    elsif params[:end_before]
+      end_before = params[:end_before]
+      if /^\d\d:\d\d$/.match(end_before)
+        @sections = Section.where("end_time < ?", end_before)
+        render json: @sections
+      else
+        render json: {message: 'Badly formatted query.  Must be of form HH:MM'}, status: 400
+      end
+
+
+
     else
       @sections = Section.all
       render json: @sections

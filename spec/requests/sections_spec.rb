@@ -60,16 +60,59 @@ describe "Sections API" do
       section_start_times = body.map { |m| m["start_time"]}
       
       expect(section_start_times).to match_array(["11:30", "12:00", "13:00"])
-
    end
   end
 
-  # describe "GET /sections?end_before=21:00" do
-  #   it "returns all the sections that finish before 21:00" do
-  #  end
-  # end
+ describe "GET /sections?start_before=11:00" do
+    it "returns all the sections that start before 11:00" do
+      s1 = FactoryGirl.create :section, start_time: "10:00"
+      s2 = FactoryGirl.create :section, start_time: "11:00"
+      s3 = FactoryGirl.create :section, start_time: "11:30"
+      s4 = FactoryGirl.create :section, start_time: "12:00"
+      s5 = FactoryGirl.create :section, start_time: "13:00"
+
+      get "/sections?start_before=11:00", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_start_times = body.map { |m| m["start_time"]}
+      
+      expect(section_start_times).to match_array(["10:00"])
+   end
+  end
+
+   describe "GET /sections?end_after=11:00" do
+    it "returns all the sections that end after 11:00" do
+      s1 = FactoryGirl.create :section, end_time: "10:00"
+      s2 = FactoryGirl.create :section, end_time: "11:00"
+      s3 = FactoryGirl.create :section, end_time: "11:30"
+      s4 = FactoryGirl.create :section, end_time: "12:00"
+      s5 = FactoryGirl.create :section, end_time: "13:00"
+
+      get "/sections?end_after=11:00", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_end_times = body.map { |m| m["end_time"]}
+      
+      expect(section_end_times).to match_array(["11:30", "12:00", "13:00"])
+   end
+  end
+
+ describe "GET /sections?end_before=11:00" do
+    it "returns all the sections that end before 11:00" do
+      s1 = FactoryGirl.create :section, end_time: "10:00"
+      s2 = FactoryGirl.create :section, end_time: "11:00"
+      s3 = FactoryGirl.create :section, end_time: "11:30"
+      s4 = FactoryGirl.create :section, end_time: "12:00"
+      s5 = FactoryGirl.create :section, end_time: "13:00"
+
+      get "/sections?end_before=11:00", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_end_times = body.map { |m| m["end_time"]}
+      
+      expect(section_end_times).to match_array(["10:00"])
+   end
+  end
 
 
+  
 
 
   describe "GET /sections/:id" do
