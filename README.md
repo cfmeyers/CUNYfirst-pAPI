@@ -36,7 +36,12 @@ message: "Resource not found"
 
 [X]  Add tests
 
-[ ]  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
+[ ]  Add query parameters
+-  [X] "?start_after=0:900"
+-  [X] "?end_before=0:900"
+-  [X] "?start_before=0:900"
+-  [X] "?end_before=0:900"
+-  [ ] "?department_name=CSCI"
 
 [ ]  Add pagination (so you can specify "I just want the first 30 courses")
 

@@ -222,11 +222,11 @@ qc_cs_courses.each do |course|
 end
 
 intro_cs_sections = [["44587", "MW", "11:10", "12:00"],
-["44588", "TF", "8:00", "8:50"],
-["45321", "TF", "9:00", "9:50"],
+["44588", "TF", "08:00", "08:50"],
+["45321", "TF", "09:00", "09:50"],
 ["46090", "TF", "10:05", "10:55"],
 ["46091", "TF", "11:10", "12:00"],
-["46092", "MW", "8:00", "8:50"]]
+["46092", "MW", "08:00", "08:50"]]
 
 intro_cs_course = Course.find_by_name("INTRO COMPUTERS & CO")
 
@@ -234,8 +234,8 @@ intro_cs_sections.each do |section|
   sec = Section.new()
   sec.cfid = section[0]
   sec.days = section[1]
-  sec.start_time = Time.parse(section[2])
-  sec.end_time = Time.parse(section[3])
+  sec.start_time = section[2]
+  sec.end_time = section[3]
   sec.course = intro_cs_course
   sec.save
 end
@@ -250,8 +250,8 @@ spreadsheet_cs_sections.each do |section|
   sec = Section.new()
   sec.cfid = section[0]
   sec.days = section[1]
-  sec.start_time = Time.parse(section[2])
-  sec.end_time = Time.parse(section[3])
+  sec.start_time = section[2]
+  sec.end_time = section[3]
   sec.course = spreadsheet_cs_course
   sec.save
 end
