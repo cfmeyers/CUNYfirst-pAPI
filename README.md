@@ -34,7 +34,7 @@ message: "Resource not found"
 
 [ ]  Add actual data from CUNYfirst database
 
-[ ]  Add tests
+[X]  Add tests
 
 [ ]  Add query parameters (e.g. "?start_time=9:00" or "?department=CSCI")
 
