@@ -47,7 +47,7 @@ describe "Sections API" do
     end
   end
 
-    describe "GET /sections?start_after=7:00" do
+    describe "GET /sections?start_after=11:00" do
     it "returns all the sections that start after 11:00" do
       s1 = FactoryGirl.create :section, start_time: "10:00"
       s2 = FactoryGirl.create :section, start_time: "11:00"
@@ -55,13 +55,11 @@ describe "Sections API" do
       s4 = FactoryGirl.create :section, start_time: "12:00"
       s5 = FactoryGirl.create :section, start_time: "13:00"
 
-      get "/sections?start_after=7:00", {}, { "Accept" => "application/json" }
+      get "/sections?start_after=11:00", {}, { "Accept" => "application/json" }
       body = JSON.parse(response.body)
       section_start_times = body.map { |m| m["start_time"]}
       
-      puts section_start_times
-
-      # expect(section_start_times).to match_array(["11:00", "11:30", "12:00", "13:00"])
+      expect(section_start_times).to match_array(["11:30", "12:00", "13:00"])
 
    end
   end

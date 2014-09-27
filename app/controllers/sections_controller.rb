@@ -5,6 +5,14 @@ class SectionsController < ApplicationController
     if params[:course_id]
       course = Course.find(params[:course_id])
       render json: Section.where(course: course)
+    elsif params[:start_after]
+      start_after = params[:start_after]
+      if /^\d\d:\d\d$/.match(start_after)
+        @sections = Section.where("start_time > ?", start_after)
+        render json: @sections
+      else
+        render json: {message: 'Badly formatted query.  Must be of form HH:MM'}, status: 404
+      end
     else
       @sections = Section.all
       render json: @sections

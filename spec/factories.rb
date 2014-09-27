@@ -19,6 +19,8 @@ FactoryGirl.define do
 
   factory :section do
     cfid "333"
+    start_time "10:00"
+    end_time "11:00"
     association :course, factory: :course
   end
 end
