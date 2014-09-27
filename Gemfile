@@ -9,6 +9,8 @@ gem 'spring', :group => :development
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'pry-rails'
 end
 
 group :production do
