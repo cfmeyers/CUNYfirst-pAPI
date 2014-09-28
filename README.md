@@ -43,6 +43,8 @@ message: "Resource not found"
 -  [X] "?end_before=09:00"
 -  [ ] "?department_name=CSCI"
 
+[X]  Add ability to query with multiple parameters
+
 [ ]  Add pagination (so you can specify "I just want the first 30 courses")
 
 
