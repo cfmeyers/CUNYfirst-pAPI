@@ -17,34 +17,34 @@ class InstructorsController < ApplicationController
 
   # POST /instructors
   # POST /instructors.json
-  def create
-    @instructor = Instructor.new(params[:instructor])
+  # def create
+  #   @instructor = Instructor.new(params[:instructor])
 
-    if @instructor.save
-      render json: @instructor, status: :created, location: @instructor
-    else
-      render json: @instructor.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @instructor.save
+  #     render json: @instructor, status: :created, location: @instructor
+  #   else
+  #     render json: @instructor.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # PATCH/PUT /instructors/1
-  # PATCH/PUT /instructors/1.json
-  def update
-    @instructor = Instructor.find(params[:id])
+  # # PATCH/PUT /instructors/1
+  # # PATCH/PUT /instructors/1.json
+  # def update
+  #   @instructor = Instructor.find(params[:id])
 
-    if @instructor.update(params[:instructor])
-      head :no_content
-    else
-      render json: @instructor.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @instructor.update(params[:instructor])
+  #     head :no_content
+  #   else
+  #     render json: @instructor.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /instructors/1
-  # DELETE /instructors/1.json
-  def destroy
-    @instructor = Instructor.find(params[:id])
-    @instructor.destroy
+  # # DELETE /instructors/1
+  # # DELETE /instructors/1.json
+  # def destroy
+  #   @instructor = Instructor.find(params[:id])
+  #   @instructor.destroy
 
-    head :no_content
-  end
+  #   head :no_content
+  # end
 end
