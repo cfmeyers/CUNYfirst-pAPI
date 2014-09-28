@@ -4,13 +4,13 @@ gem 'rails', '4.1.4'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'spring-commands-rspec'
 end
 
 group :production do
