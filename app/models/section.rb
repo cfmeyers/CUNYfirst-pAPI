@@ -28,4 +28,20 @@ class Section < ActiveRecord::Base
     course = Course.find(course_id)
     where(course: course)
   }
+  scope :location_id, -> (location_id) {
+    location = Location.find(location_id)
+    where(location: location)
+  }
+
+  scope :instructor_id, -> (instructor_id) {
+    instructor = Instructor.find(instructor_id)
+    where(instructor: instructor)
+  }
+  scope :semester_id, -> (semester_id) {
+    semester = Semester.find(semester_id)
+    where(semester: semester)
+  }
+
+
+
 end

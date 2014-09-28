@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :location do
     name "JK 510"
+    institution
   end
 end

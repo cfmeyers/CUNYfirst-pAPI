@@ -47,6 +47,91 @@ describe "Sections API" do
     end
   end
 
+  describe "GET /sections?instructor_id=1" do
+    it "returns all the sections associated with instructor_id 1" do
+
+      i1 = FactoryGirl.create :instructor, first_name: "Ahmed", last_name: "Massoud"
+      i2 = FactoryGirl.create :instructor, first_name: "Li", last_name: "Kaichek"
+
+      s1 = FactoryGirl.create :section, cfid: "777", instructor: i1
+      s2 = FactoryGirl.create :section, cfid: "888", instructor: i1
+      s3 = FactoryGirl.create :section, cfid: "999", instructor: i2
+
+      get "/sections?instructor_id=#{i2.id}", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["999"])
+
+      get "/sections", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["777", "888", "999"])
+    end
+  end
+
+  describe "GET /sections?semester_id=1" do
+    it "returns all the sections associated with semester_id 1" do
+
+      z1 = FactoryGirl.create :semester, name: "Fall 2014"
+      z2 = FactoryGirl.create :semester, name: "Spring 2014"
+
+      s1 = FactoryGirl.create :section, cfid: "777", semester: z1
+      s2 = FactoryGirl.create :section, cfid: "888", semester: z1
+      s3 = FactoryGirl.create :section, cfid: "999", semester: z2
+
+      get "/sections?semester_id=#{z1.id}", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["777", "888"])
+
+      get "/sections", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["777", "888", "999"])
+    end
+  end
+
+    describe "GET /sections?location_id=1" do
+    it "returns all the sections associated with location_id 1" do
+
+      l1 = FactoryGirl.create :location, name: "KY 212"
+      l2 = FactoryGirl.create :location, name: "BL 333"
+
+      s1 = FactoryGirl.create :section, cfid: "777", location: l1
+      s2 = FactoryGirl.create :section, cfid: "888", location: l1
+      s3 = FactoryGirl.create :section, cfid: "999", location: l2
+
+      get "/sections?location_id=#{l2.id}", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["999"])
+
+      get "/sections", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["777", "888", "999"])
+    end
+  end
+
+
   describe "GET /sections?start_after=11:00" do
     it "returns all the sections that start after 11:00" do
       s1 = FactoryGirl.create :section, start_time: "10:00"

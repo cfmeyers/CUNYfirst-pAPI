@@ -4,6 +4,9 @@ class SectionsController < ApplicationController
   def index
     @sections = Section.where(nil)
     @sections = @sections.course_id(params[:course_id]) if params[:course_id].present?
+    @sections = @sections.location_id(params[:location_id]) if params[:location_id].present?
+    @sections = @sections.instructor_id(params[:instructor_id]) if params[:instructor_id].present?
+    @sections = @sections.semester_id(params[:semester_id]) if params[:semester_id].present?
     @sections = @sections.start_after(params[:start_after]) if params[:start_after].present?
     @sections = @sections.start_before(params[:start_before]) if params[:start_before].present?
     @sections = @sections.end_before(params[:end_before]) if params[:end_before].present?

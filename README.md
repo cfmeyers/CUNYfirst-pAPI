@@ -4,17 +4,24 @@ This "pseudo-API" is being built with [Rails::API](https://github.com/rails-api/
 
 The current proof-of-concept is being hosted at on heroku.
 
-Thus far the Institutions, Departments, Courses, and Sections resources have been created.  They can be accessed at these endpoints:
+Thus far the Institutions, Departments, Courses, Sections, Locations, Instructors, and Semesters resources have been created.  They can be accessed at these endpoints:
 -  http://calm-falls-3644.herokuapp.com/institutions
 -  http://calm-falls-3644.herokuapp.com/departments
 -  http://calm-falls-3644.herokuapp.com/courses
 -  http://calm-falls-3644.herokuapp.com/sections
+-  http://calm-falls-3644.herokuapp.com/instructors
+-  http://calm-falls-3644.herokuapp.com/locations
+-  http://calm-falls-3644.herokuapp.com/semesters
 
 for their respective collection views and 
 -  http://calm-falls-3644.herokuapp.com/institutions/1
 -  http://calm-falls-3644.herokuapp.com/departments/1
 -  http://calm-falls-3644.herokuapp.com/courses/1
 -  http://calm-falls-3644.herokuapp.com/sections/1
+-  http://calm-falls-3644.herokuapp.com/instructors/1
+-  http://calm-falls-3644.herokuapp.com/locations/1
+-  http://calm-falls-3644.herokuapp.com/semesters/1
+
 
 for elements within the collection (replace "1" with the element-id of your choice).
 
@@ -35,6 +42,9 @@ The query parameters defined so far for the Section resource are (notice how all
 -  end_before  (e.g. http://calm-falls-3644.herokuapp.com/sections?end_before=09:00)
 -  end_after  (e.g. http://calm-falls-3644.herokuapp.com/sections?end_after=09:00)
 -  course_id (e.g. http://calm-falls-3644.herokuapp.com/sections?course_id=4)
+-  location_id (e.g. http://calm-falls-3644.herokuapp.com/sections?location_id=4)
+-  instructor_id (e.g. http://calm-falls-3644.herokuapp.com/sections?instructor_id=4)
+-  semester_id (e.g. http://calm-falls-3644.herokuapp.com/sections?semester_id=1)
 
 Asking for an element that does not exist will result in a 404 error:
 ~~~

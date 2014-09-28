@@ -28,7 +28,6 @@ FactoryGirl.define do
     cfid "333"
     start_time "10:00"
     end_time "11:00"
-    # association :course, factory: :course
     course
     instructor
     location

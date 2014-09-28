@@ -42,6 +42,32 @@ describe Section do
     expect(Section.course_id(c2.id).length).to equal(1)
   end
 
+  it "should return location_id scope properly" do
+
+    l1 = FactoryGirl.create :location, name: "SC 101"
+    l2 = FactoryGirl.create :location, name: "SC 102"
+
+    FactoryGirl.create :section, cfid: "777", location: l1
+    FactoryGirl.create :section, cfid: "888", location: l1
+    FactoryGirl.create :section, cfid: "999", location: l2
+    expect(Section.location_id(l1.id).length).to equal(2)
+    expect(Section.location_id(l2.id).length).to equal(1)
+  end
+
+  it "should return instructor_id scope properly" do
+
+    i1 = FactoryGirl.create :instructor, first_name: "Bob", last_name: "Jones"
+    i2 = FactoryGirl.create :instructor, first_name: "Leslie", last_name: "Coogan"
+
+    FactoryGirl.create :section, cfid: "777", instructor: i1
+    FactoryGirl.create :section, cfid: "888", instructor: i1
+    FactoryGirl.create :section, cfid: "999", instructor: i2
+    expect(Section.instructor_id(i1.id).length).to equal(2)
+    expect(Section.instructor_id(i2.id).length).to equal(1)
+  end
+
+
+
   it "should combine multiple scopes properly" do
 
     c1 = FactoryGirl.create :course, name: "Computer Science 101"
