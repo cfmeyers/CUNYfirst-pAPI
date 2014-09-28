@@ -37,23 +37,24 @@ message: "Resource not found"
 
 -  [ ]  Add actual data from CUNYfirst database
 
-[X]  Add tests
+-  [X]  Add tests
 
-[ ]  Add query parameters
--  [X] "?start_after=09:00"
--  [X] "?end_before=09:00"
--  [X] "?start_before=09:00"
--  [X] "?end_before=09:00"
--  [ ] "?department_name=CSCI"
+-  [X]  Add ability to query with multiple parameters
 
-[X]  Add ability to query with multiple parameters
+-  [ ]  Add pagination (so you can specify "I just want the first 30 courses")
 
-[ ]  Add pagination (so you can specify "I just want the first 30 courses")
+-  [ ]  Change field names and resource names so they match those used by CUNYfirst database
+
+-  [X]  Add error message if no resources returned
 
 
-[ ]  Change field names and resource names so they match those used by CUNYfirst database
+###Add query parameters
+-  [X] "/sections?start_after=09:00"
+-  [X] "/sections?end_before=09:00"
+-  [X] "/sections?start_before=09:00"
+-  [X] "/sections?end_before=09:00"
+-  [ ] "/sections?department_name=CSCI"
 
-[X]  Add error message if no resources returned
 
 #Tips
 The data from these URLs is in [JSON](http://en.wikipedia.org/wiki/JSON) format.  In order to make it easier to read in the browser you might want to download a plugin.  If you're using the Chrome browser, try [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc/related?hl=en).
