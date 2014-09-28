@@ -18,13 +18,23 @@ for their respective collection views and
 
 for elements within the collection (replace "1" with the element-id of your choice).
 
-To search sections by course id, use
--  http://calm-falls-3644.herokuapp.com/sections?course_id=4
+##Sections Query API
 
-To search for sections that start afer 9:00 AM and end before 8:00 PM and are associated with course_id #4
+Sometimes you want to narrow down your request.  Maybe instead of getting all the sections, you just want the ones that start after 9:00 AM.  In that case, use http://calm-falls-3644.herokuapp.com/sections?start_after=4 .
+
+Notice it's just the the "sections" resource URL with a question mark and assertion (in this case, start_after=4).
+
+You can search with multiple parameters by seperating them with an ampersand:
 -  http://calm-falls-3644.herokuapp.com/sections?start_after=09:00&course_id=4&end_before=20:00
+(sections that start afer 9:00 AM and end before 8:00 PM and are associated with course_id #4)
 
-(replace "4" with the course-id of your choice).
+The query parameters defined so far for the Section resource are (notice how all times must be in HH:MM format):
+
+-  start_before  (e.g. http://calm-falls-3644.herokuapp.com/sections?start_before=09:00)
+-  start_after  (e.g. http://calm-falls-3644.herokuapp.com/sections?start_after=09:00)
+-  end_before  (e.g. http://calm-falls-3644.herokuapp.com/sections?end_before=09:00)
+-  end_after  (e.g. http://calm-falls-3644.herokuapp.com/sections?end_after=09:00)
+-  course_id (e.g. http://calm-falls-3644.herokuapp.com/sections?course_id=4)
 
 Asking for an element that does not exist will result in a 404 error:
 ~~~
