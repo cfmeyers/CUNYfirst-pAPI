@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :semester do
-    name "MyString"
+    name "Fall 2014"
   end
 end
