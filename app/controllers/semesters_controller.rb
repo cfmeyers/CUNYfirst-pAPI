@@ -5,6 +5,9 @@ class SemestersController < ApplicationController
     @semesters = Semester.all
 
     render json: @semesters
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
+
   end
 
   # GET /semesters/1
@@ -13,6 +16,10 @@ class SemestersController < ApplicationController
     @semester = Semester.find(params[:id])
 
     render json: @semester
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # POST /semesters

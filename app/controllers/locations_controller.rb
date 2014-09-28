@@ -5,6 +5,9 @@ class LocationsController < ApplicationController
     @locations = Location.all
 
     render json: @locations
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
+
   end
 
   # GET /locations/1
@@ -13,6 +16,10 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     render json: @location
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # POST /locations

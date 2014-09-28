@@ -5,6 +5,10 @@ class InstructorsController < ApplicationController
     @instructors = Instructor.all
 
     render json: @instructors
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
+
+
   end
 
   # GET /instructors/1
@@ -13,7 +17,12 @@ class InstructorsController < ApplicationController
     @instructor = Instructor.find(params[:id])
 
     render json: @instructor
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: 'Resource not found'}, status: 404
+
+
   end
+
 
   # POST /instructors
   # POST /instructors.json
