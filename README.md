@@ -21,6 +21,9 @@ for elements within the collection (replace "1" with the element-id of your choi
 To search sections by course id, use
 -  http://calm-falls-3644.herokuapp.com/sections?course_id=4
 
+To search for sections that start afer 9:00 AM and end before 8:00 PM and are associated with course_id #4
+-  http://calm-falls-3644.herokuapp.com/sections?start_after=09:00&course_id=4&end_before=20:00
+
 (replace "4" with the course-id of your choice).
 
 Asking for an element that does not exist will result in a 404 error:
