@@ -15,6 +15,7 @@ class Section < ActiveRecord::Base
   include ActiveModel::Validations
   belongs_to :course
   validates :course_id, presence: true
+  has_one :location
   validates_with HourMinuteValidator
 
   scope :start_after, -> (start_after) { where("start_time > ?", start_after) }
