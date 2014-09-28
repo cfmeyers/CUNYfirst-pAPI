@@ -35,7 +35,7 @@ message: "Resource not found"
 
 #TODO
 
-[ ]  Add actual data from CUNYfirst database
+-  [ ]  Add actual data from CUNYfirst database
 
 [X]  Add tests
 
