@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :semesters, except: [:new, :edit]
   resources :locations, except: [:new, :edit]
   resources :instructors, except: [:new, :edit]
   resources :sections, except: [:new, :edit]
