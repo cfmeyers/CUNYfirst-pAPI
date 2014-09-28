@@ -45,6 +45,8 @@ The query parameters defined so far for the Section resource are (notice how all
 -  location_id (e.g. http://calm-falls-3644.herokuapp.com/sections?location_id=4)
 -  instructor_id (e.g. http://calm-falls-3644.herokuapp.com/sections?instructor_id=4)
 -  semester_id (e.g. http://calm-falls-3644.herokuapp.com/sections?semester_id=1)
+-  open (e.g. http://calm-falls-3644.herokuapp.com/sections?open=true)
+-  closed (e.g. http://calm-falls-3644.herokuapp.com/sections?closed=true)
 
 Asking for an element that does not exist will result in a 404 error:
 ~~~

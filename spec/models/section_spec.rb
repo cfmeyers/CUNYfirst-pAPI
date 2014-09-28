@@ -66,6 +66,17 @@ describe Section do
     expect(Section.instructor_id(i2.id).length).to equal(1)
   end
 
+  it "should return open scope properly" do
+
+    FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 25
+    FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
+    FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
+    FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
+
+    expect(Section.open.length).to equal(2)
+  end
+
+
 
 
   it "should combine multiple scopes properly" do

@@ -131,6 +131,40 @@ describe "Sections API" do
     end
   end
 
+  describe "GET /sections?open=true" do
+    it "returns all the sections that are open" do
+
+    s1 = FactoryGirl.create :section, cfid: "555", current_enrollment: 25, enrollment_limit: 25
+    s2 = FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
+    s3 = FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
+    s4 = FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
+
+      get "/sections?open=true", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"]}
+      
+      expect(section_cfids).to match_array(["777","999"])
+    end
+  end
+
+  describe "GET /sections?closed=true" do
+    it "returns all the sections that are closed" do
+
+    s1 = FactoryGirl.create :section, cfid: "555", current_enrollment: 25, enrollment_limit: 25
+    s2 = FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
+    s3 = FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
+    s4 = FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
+
+      get "/sections?closed=true", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"]}
+      
+      expect(section_cfids).to match_array(["555","888"])
+    end
+  end
+
+
+
 
   describe "GET /sections?start_after=11:00" do
     it "returns all the sections that start after 11:00" do

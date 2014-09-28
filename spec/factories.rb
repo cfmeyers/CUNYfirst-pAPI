@@ -28,6 +28,8 @@ FactoryGirl.define do
     cfid "333"
     start_time "10:00"
     end_time "11:00"
+    current_enrollment 25
+    enrollment_limit 30
     course
     instructor
     location

@@ -11,6 +11,10 @@ class SectionsController < ApplicationController
     @sections = @sections.start_before(params[:start_before]) if params[:start_before].present?
     @sections = @sections.end_before(params[:end_before]) if params[:end_before].present?
     @sections = @sections.end_after(params[:end_after]) if params[:end_after].present?
+
+    @sections = @sections.open if params[:open].present? && params[:open]
+    @sections = @sections.closed if params[:closed].present? && params[:closed]
+
     render json: @sections
     
     # if params[:course_id]
