@@ -6,13 +6,15 @@ FactoryGirl.define do
   end
 
   factory :department do
-    name "A Test Department"
+    name "TSTD"
+    long_name "A Test Department"
     cfid "111"
     association :institution, factory: :institution
   end
 
   factory :course do
-    name "A Test Course"
+    name "TSTD 101"
+    long_name "A Test Course"
     cfid "222"
     association :department, factory: :department
   end
