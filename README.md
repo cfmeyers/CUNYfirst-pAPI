@@ -65,6 +65,8 @@ The query parameters defined so far for the Section resource are (notice how all
 
 -  [X]  Add ability to query with multiple parameters
 
+-  [ ]  Add search-by-day parameters for sections resource
+
 -  [ ]  Add pagination (so you can specify "I just want the first 30 courses")
 
 -  [ ]  Change field names and resource names so they match those used by CUNYfirst database

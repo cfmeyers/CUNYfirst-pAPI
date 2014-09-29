@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :courses, except: [:new, :edit]
   resources :departments, except: [:new, :edit]
   resources :institutions, except: [:new, :edit]
+
+  get '/', :to => redirect('https://github.com/cfmeyers/CUNYfirst-pAPI')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
