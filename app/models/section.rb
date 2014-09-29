@@ -53,6 +53,20 @@ class Section < ActiveRecord::Base
     where("current_enrollment >= enrollment_limit")
   }
 
+  #takes array of strings or symbols representing days of the week, e.g. [:monday, :tuesday]
+  scope :exclude_days, -> (days) {
+    h = Hash[days.map{|day| [day, false]}]
+    where(h)
+  }
+
+  scope :include_days, -> (days) {
+    h = Hash[days.map{|day| [day, true]}]
+    where(h)
+  }
+
+
+
+
 
 
 

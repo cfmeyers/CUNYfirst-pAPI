@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929062055) do
+ActiveRecord::Schema.define(version: 20140929170354) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20140929062055) do
   end
 
   create_table "sections", force: true do |t|
-    t.string   "days"
     t.string   "start_time"
     t.string   "end_time"
     t.string   "cfid"
@@ -68,6 +67,13 @@ ActiveRecord::Schema.define(version: 20140929062055) do
     t.integer  "instructor_id"
     t.integer  "semester_id"
     t.string   "mode_of_instruction"
+    t.boolean  "monday",              default: false
+    t.boolean  "tuesday",             default: false
+    t.boolean  "wednesday",           default: false
+    t.boolean  "thursday",            default: false
+    t.boolean  "friday",              default: false
+    t.boolean  "saturday",            default: false
+    t.boolean  "sunday",              default: false
   end
 
   create_table "semesters", force: true do |t|

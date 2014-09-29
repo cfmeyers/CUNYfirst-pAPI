@@ -76,6 +76,30 @@ describe Section do
     expect(Section.open.length).to equal(2)
   end
 
+  it "should return exclude_days scope properly" do
+
+    FactoryGirl.create :section, cfid: "555", monday: true, wednesday: true
+    FactoryGirl.create :section, cfid: "777", friday: true, saturday: true
+    FactoryGirl.create :section, cfid: "888", monday: true, tuesday: true
+    FactoryGirl.create :section, cfid: "999", monday: true, tuesday: true
+
+    expect(Section.exclude_days([:monday]).length).to equal(1)
+    expect(Section.exclude_days([:friday]).length).to equal(3)
+    expect(Section.exclude_days([:friday, :monday]).length).to equal(0)
+  end
+
+  it "should return include_days scope properly" do
+
+    FactoryGirl.create :section, cfid: "555", monday: true, wednesday: true
+    FactoryGirl.create :section, cfid: "777", friday: true, saturday: true
+    FactoryGirl.create :section, cfid: "888", monday: true, tuesday: true
+    FactoryGirl.create :section, cfid: "999", monday: true, tuesday: true
+
+    expect(Section.include_days([:monday]).length).to equal(3)
+    expect(Section.include_days([:friday]).length).to equal(1)
+    expect(Section.include_days([:friday, :monday]).length).to equal(0)
+  end
+
 
 
 

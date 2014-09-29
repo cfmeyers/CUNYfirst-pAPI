@@ -56,6 +56,10 @@ The query parameters defined so far for the Section resource are (notice how all
 -  semester_id (e.g. http://cuny-first-papi.herokuapp.com/sections?semester_id=1)
 -  open (e.g. http://cuny-first-papi.herokuapp.com/sections?open=true)
 -  closed (e.g. http://cuny-first-papi.herokuapp.com/sections?closed=true)
+-  include_days[] (e.g. http://cuny-first-papi.herokuapp.com/sections?include_days[]=monday&include_days[]=friday)
+-  exclude_days[] (e.g. http://cuny-first-papi.herokuapp.com/sections?exclude_days[]=monday&exclude_days[]=tuesday)
+
+Notice the brackets on the end of include_days[] and exclude_days[].  This is a convention because you cannot pass an array in a GET request.
 
 #TODO
 

@@ -103,7 +103,7 @@ describe "Sections API" do
     end
   end
 
-    describe "GET /sections?location_id=1" do
+  describe "GET /sections?location_id=1" do
     it "returns all the sections associated with location_id 1" do
 
       l1 = FactoryGirl.create :location, name: "KY 212"
@@ -134,10 +134,10 @@ describe "Sections API" do
   describe "GET /sections?open=true" do
     it "returns all the sections that are open" do
 
-    s1 = FactoryGirl.create :section, cfid: "555", current_enrollment: 25, enrollment_limit: 25
-    s2 = FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
-    s3 = FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
-    s4 = FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
+      s1 = FactoryGirl.create :section, cfid: "555", current_enrollment: 25, enrollment_limit: 25
+      s2 = FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
+      s3 = FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
+      s4 = FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
 
       get "/sections?open=true", {}, { "Accept" => "application/json" }
       body = JSON.parse(response.body)
@@ -150,10 +150,10 @@ describe "Sections API" do
   describe "GET /sections?closed=true" do
     it "returns all the sections that are closed" do
 
-    s1 = FactoryGirl.create :section, cfid: "555", current_enrollment: 25, enrollment_limit: 25
-    s2 = FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
-    s3 = FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
-    s4 = FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
+      s1 = FactoryGirl.create :section, cfid: "555", current_enrollment: 25, enrollment_limit: 25
+      s2 = FactoryGirl.create :section, cfid: "777", current_enrollment: 25, enrollment_limit: 30
+      s3 = FactoryGirl.create :section, cfid: "888", current_enrollment: 25, enrollment_limit: 23
+      s4 = FactoryGirl.create :section, cfid: "999", current_enrollment: 30, enrollment_limit: 40
 
       get "/sections?closed=true", {}, { "Accept" => "application/json" }
       body = JSON.parse(response.body)
@@ -163,6 +163,37 @@ describe "Sections API" do
     end
   end
 
+  describe "GET /sections?exclude_days[]=monday&exclude_days[]=tuesday" do
+    it "returns all the sections that meet on neither monday nor tuesday" do
+
+      FactoryGirl.create :section, cfid: "555", monday: true, wednesday: true
+      FactoryGirl.create :section, cfid: "777", friday: true, saturday: true
+      FactoryGirl.create :section, cfid: "888", monday: true, tuesday: true
+      FactoryGirl.create :section, cfid: "999", monday: true, tuesday: true
+
+      get "/sections?exclude_days[]=monday&exclude_days[]=tuesday", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"]}
+
+      expect(section_cfids).to match_array(["777"])
+    end
+  end
+
+  describe "GET /sections?include_days[]=monday&include_days[]=friday" do
+    it "returns all the sections that meet on both monday and friday" do
+
+      FactoryGirl.create :section, cfid: "555", monday: true, friday: true
+      FactoryGirl.create :section, cfid: "777", friday: true, saturday: true
+      FactoryGirl.create :section, cfid: "888", monday: true, tuesday: true
+      FactoryGirl.create :section, cfid: "999", monday: true, friday: true
+
+      get "/sections?include_days[]=monday&include_days[]=friday", {}, { "Accept" => "application/json" }
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"]}
+
+      expect(section_cfids).to match_array(["555","999"])
+    end
+  end
 
 
 
