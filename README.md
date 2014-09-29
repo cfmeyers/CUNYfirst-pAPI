@@ -5,48 +5,48 @@ This "pseudo-API" is being built with [Rails::API](https://github.com/rails-api/
 The current proof-of-concept is being hosted at on heroku.
 
 Thus far the Institutions, Departments, Courses, Sections, Locations, Instructors, and Semesters resources have been created.  They can be accessed at these endpoints:
--  http://calm-falls-3644.herokuapp.com/institutions
--  http://calm-falls-3644.herokuapp.com/departments
--  http://calm-falls-3644.herokuapp.com/courses
--  http://calm-falls-3644.herokuapp.com/sections
--  http://calm-falls-3644.herokuapp.com/instructors
--  http://calm-falls-3644.herokuapp.com/locations
--  http://calm-falls-3644.herokuapp.com/semesters
+-  http://cuny-first-papi.herokuapp.com/institutions
+-  http://cuny-first-papi.herokuapp.com/departments
+-  http://cuny-first-papi.herokuapp.com/courses
+-  http://cuny-first-papi.herokuapp.com/sections
+-  http://cuny-first-papi.herokuapp.com/instructors
+-  http://cuny-first-papi.herokuapp.com/locations
+-  http://cuny-first-papi.herokuapp.com/semesters
 
 for their respective collection views and 
--  http://calm-falls-3644.herokuapp.com/institutions/1
--  http://calm-falls-3644.herokuapp.com/departments/1
--  http://calm-falls-3644.herokuapp.com/courses/1
--  http://calm-falls-3644.herokuapp.com/sections/1
--  http://calm-falls-3644.herokuapp.com/instructors/1
--  http://calm-falls-3644.herokuapp.com/locations/1
--  http://calm-falls-3644.herokuapp.com/semesters/1
+-  http://cuny-first-papi.herokuapp.com/institutions/1
+-  http://cuny-first-papi.herokuapp.com/departments/1
+-  http://cuny-first-papi.herokuapp.com/courses/1
+-  http://cuny-first-papi.herokuapp.com/sections/1
+-  http://cuny-first-papi.herokuapp.com/instructors/1
+-  http://cuny-first-papi.herokuapp.com/locations/1
+-  http://cuny-first-papi.herokuapp.com/semesters/1
 
 
 for elements within the collection (replace "1" with the element-id of your choice).
 
 ##Sections Query API
 
-Sometimes you want to narrow down your request.  Maybe instead of getting all the sections, you just want the ones that start after 9:00 AM.  In that case, use http://calm-falls-3644.herokuapp.com/sections?start_after=4 .
+Sometimes you want to narrow down your request.  Maybe instead of getting all the sections, you just want the ones that start after 9:00 AM.  In that case, use http://cuny-first-papi.herokuapp.com/sections?start_after=4 .
 
 Notice it's just the the "sections" resource URL with a question mark and assertion (in this case, start_after=4).
 
 You can search with multiple parameters by seperating them with an ampersand:
--  http://calm-falls-3644.herokuapp.com/sections?start_after=09:00&course_id=4&end_before=20:00
+-  http://cuny-first-papi.herokuapp.com/sections?start_after=09:00&course_id=4&end_before=20:00
 (sections that start afer 9:00 AM and end before 8:00 PM and are associated with course_id #4)
 
 The query parameters defined so far for the Section resource are (notice how all times must be in HH:MM format):
 
--  start_before  (e.g. http://calm-falls-3644.herokuapp.com/sections?start_before=09:00)
--  start_after  (e.g. http://calm-falls-3644.herokuapp.com/sections?start_after=09:00)
--  end_before  (e.g. http://calm-falls-3644.herokuapp.com/sections?end_before=09:00)
--  end_after  (e.g. http://calm-falls-3644.herokuapp.com/sections?end_after=09:00)
--  course_id (e.g. http://calm-falls-3644.herokuapp.com/sections?course_id=4)
--  location_id (e.g. http://calm-falls-3644.herokuapp.com/sections?location_id=4)
--  instructor_id (e.g. http://calm-falls-3644.herokuapp.com/sections?instructor_id=4)
--  semester_id (e.g. http://calm-falls-3644.herokuapp.com/sections?semester_id=1)
--  open (e.g. http://calm-falls-3644.herokuapp.com/sections?open=true)
--  closed (e.g. http://calm-falls-3644.herokuapp.com/sections?closed=true)
+-  start_before  (e.g. http://cuny-first-papi.herokuapp.com/sections?start_before=09:00)
+-  start_after  (e.g. http://cuny-first-papi.herokuapp.com/sections?start_after=09:00)
+-  end_before  (e.g. http://cuny-first-papi.herokuapp.com/sections?end_before=09:00)
+-  end_after  (e.g. http://cuny-first-papi.herokuapp.com/sections?end_after=09:00)
+-  course_id (e.g. http://cuny-first-papi.herokuapp.com/sections?course_id=4)
+-  location_id (e.g. http://cuny-first-papi.herokuapp.com/sections?location_id=4)
+-  instructor_id (e.g. http://cuny-first-papi.herokuapp.com/sections?instructor_id=4)
+-  semester_id (e.g. http://cuny-first-papi.herokuapp.com/sections?semester_id=1)
+-  open (e.g. http://cuny-first-papi.herokuapp.com/sections?open=true)
+-  closed (e.g. http://cuny-first-papi.herokuapp.com/sections?closed=true)
 
 Asking for an element that does not exist will result in a 404 error:
 ~~~
@@ -92,7 +92,7 @@ If you're on a *nix machine, say OS X, you can use the command line utility cURL
 On the command line enter
 
 ~~~
-curl "http://calm-falls-3644.herokuapp.com/sections?course_id=4"
+curl "http://cuny-first-papi.herokuapp.com/sections?course_id=4"
 ~~~
 
 You should get back
