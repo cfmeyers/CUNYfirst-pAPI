@@ -20,6 +20,7 @@ end
 qc = Institution.find_by_name("Queens College")
 
 qc_department_names = [
+["ACCT", "Accounting"],
 ["ACE", "Adult Collegiate Education"], 
 ["AFST", "Africana Studies"],
 ["AMST", "American Studies"],
@@ -116,41 +117,109 @@ qc_department_names.each do |department_arr|
   department = Department.create(name: department_arr[0], long_name: department_arr[1], institution: qc)
 end
 
+fall2014 = Semester.create(name: "Fall 2014")
 rows = CSV.read('db/QCScheduleFall2014.csv')
+rows.shift #get rid of header
+
 #rows[x][1] is Code (Section.cfid)
-#rows[x][2] is Course (Course.name, have to get rid of everything in parenthesis)
+#rows[x][2] is Course (Course.name, Course.credit_hour in parenthesis), e.g "ACCT 100 (3, 3)"
+#rows[x][3] is Description (Course.long_name)
+#rows[x][4] is Day (Section.days)
+#rows[x][5] is Time (Section.start_time and Section.end_time)
+#rows[x][6] is Instructor (Instructor.last_name, Instructor.first_name)
+#rows[x][7] is Location (Location.name)
+#rows[x][8] is Enrolled (Section.current_enrollment)
+#rows[x][9] is Limit (Section.enrollment_limit)
+#rows[x][10] is Mode of Instruction (Section.mode_of_instruction)
 
-# qc_cs_courses.each do |course| 
-#   crs = Course.new(name: course[0])
-#   crs.cfid = course[1]
-#   crs.department = csdepartment
-#   crs.save
-# end
+rows.each do |row|
 
-# intro_cs_sections = [["44587", "MW", "11:10", "12:00"],
-# ["44588", "TF", "08:00", "08:50"],
-# ["45321", "TF", "09:00", "09:50"],
-# ["46090", "TF", "10:05", "10:55"],
-# ["46091", "TF", "11:10", "12:00"],
-# ["46092", "MW", "08:00", "08:50"]]
+  #Course 
+  unless row[2].empty?
+    course_name = row[2].split("(")[0].strip
+    course_credit_hours = row[2].split("(")[1].split(",")[1].strip.split(")")[0].to_f
+    department_name = course_name.split(" ")[0] 
+    department = Department.find_or_create_by(name: department_name)
+    course = Course.find_or_create_by(name: course_name, department: department)
+    course.long_name = row[3]
+    course.credit_hours = course_credit_hours
+    course.save
+  end
 
-# intro_cs_course = Course.find_by_name("INTRO COMPUTERS & CO")
+  #Instructor
+  unless row[6].empty?
+   last_name = row[6].split(",")[0].strip
+   first_name = row[6].split(",")[1].strip
+   instructor = Instructor.find_or_create_by(first_name: first_name, last_name: last_name)
+  else
+    instructor = nil
+  end
 
-# intro_cs_sections.each do |section| 
-#   sec = Section.new()
-#   sec.cfid = section[0]
-#   sec.days = section[1]
-#   sec.start_time = section[2]
-#   sec.end_time = section[3]
-#   sec.course = intro_cs_course
-#   sec.save
-# end
+  #Location
+  location_name = row[7].strip
+  location = Location.find_or_create_by(name: location_name, institution: qc) 
 
-# spreadsheet_cs_sections = [["46015", "TTH", "20:30", "21:20"],
-# ["46014", "TTH", "19:30", "20:20"],
-# ["46016", "TTH", "18:30", "19:20"]]
+  section_cfid = row[1]
+  section_days = row[4].strip
+  section_current_enrollment = row[8].to_i
+  section_enrollment_limit = row[9].to_i
+  section_mode_of_instruction = row[10].strip
+  
+  #Section Time
+  ##row[5] "3:10 PM - 6:00 PM"
+  start_time_str = row[5].split("-")[0].strip # "3:10 PM"
+  section_start_time = ""
 
-# spreadsheet_cs_course = Course.find_by_name("SPEADSHEET PROGRAMMI")
+  unless start_time_str.empty?
+    start_time_time = Time.parse(start_time_str)
+    if start_time_time.hour < 10
+      section_start_time += "0"+start_time_time.hour.to_s
+    else
+      section_start_time += start_time_time.hour.to_s
+    end
+
+    if start_time_time.min < 10
+      section_start_time += ":0"+start_time_time.min.to_s
+    else
+      section_start_time += ":"+start_time_time.min.to_s
+    end
+  # else
+    # section_start_time = "99:99"
+  end
+  
+  end_time_str = row[5].split("-")[1].strip   # "6:00 PM"
+  section_end_time = ""
+  unless end_time_str.empty?
+    end_time_time = Time.parse(end_time_str)
+    if end_time_time.hour < 10
+      section_end_time += "0"+end_time_time.hour.to_s
+    else
+      section_end_time += start_time_time.hour.to_s
+    end
+
+    if end_time_time.min < 10
+      section_end_time += ":0"+end_time_time.min.to_s
+    else
+      section_end_time += ":"+end_time_time.min.to_s
+    end
+  # else
+    # section_end_time = "99:99"
+
+  end
+  section = Section.find_or_create_by(cfid: section_cfid, course: course)
+  section.days = section_days
+  section.start_time = section_start_time unless section_start_time.empty?
+  section.end_time = section_end_time unless section_end_time.empty?
+  section.current_enrollment = section_current_enrollment
+  section.enrollment_limit = section_enrollment_limit
+  section.mode_of_instruction = section_mode_of_instruction
+  section.location = location
+  section.instructor = instructor
+  section.save
+
+end
+puts Section.all.length
+
 
 # spreadsheet_cs_sections.each do |section| 
 #   sec = Section.new()
