@@ -25,6 +25,15 @@ for their respective collection views and
 
 for elements within the collection (replace "1" with the element-id of your choice).
 
+Asking for an element that does not exist will result in a 404 error:
+~~~
+{
+message: "Resource not found"
+}
+~~~
+
+
+
 ##Sections Query API
 
 Sometimes you want to narrow down your request.  Maybe instead of getting all the sections, you just want the ones that start after 9:00 AM.  In that case, use http://cuny-first-papi.herokuapp.com/sections?start_after=4 .
@@ -48,16 +57,9 @@ The query parameters defined so far for the Section resource are (notice how all
 -  open (e.g. http://cuny-first-papi.herokuapp.com/sections?open=true)
 -  closed (e.g. http://cuny-first-papi.herokuapp.com/sections?closed=true)
 
-Asking for an element that does not exist will result in a 404 error:
-~~~
-{
-message: "Resource not found"
-}
-~~~
-
 #TODO
 
--  [ ]  Add actual data from CUNYfirst database
+-  [X]  Add actual data from CUNYfirst database
 
 -  [X]  Add tests
 
@@ -70,14 +72,6 @@ message: "Resource not found"
 -  [X]  Add error message if no resources returned
 
 -  [ ]  Clean up Sections controller filter logic a la http://www.justinweiss.com/blog/2014/02/17/search-and-filter-rails-models-without-bloating-your-controller/
-
-
-###Add query parameters
--  [X] "/sections?start_after=09:00"
--  [X] "/sections?end_before=09:00"
--  [X] "/sections?start_before=09:00"
--  [X] "/sections?end_before=09:00"
--  [ ] "/sections?department_name=CSCI"
 
 
 #Tips
@@ -95,8 +89,20 @@ On the command line enter
 curl "http://cuny-first-papi.herokuapp.com/sections?course_id=4"
 ~~~
 
-You should get back
+You should get back something like
 
 ~~~
-[{"id":7,"days":"TTH","start_time":"2000-01-01T20:30:00.000Z","end_time":"2000-01-01T21:20:00.000Z","cfid":"46015","course_id":4,"created_at":"2014-09-24T08:00:55.573Z","updated_at":"2014-09-24T08:00:55.573Z"},{"id":8,"days":"TTH","start_time":"2000-01-01T19:30:00.000Z","end_time":"2000-01-01T20:20:00.000Z","cfid":"46014","course_id":4,"created_at":"2014-09-24T08:00:55.581Z","updated_at":"2014-09-24T08:00:55.581Z"},{"id":9,"days":"TTH","start_time":"2000-01-01T18:30:00.000Z","end_time":"2000-01-01T19:20:00.000Z","cfid":"46016","course_id":4,"created_at":"2014-09-24T08:00:55.589Z","updated_at":"2014-09-24T08:00:55.589Z"}]
+[  {"id":24,"days":"M, W","start_time":"18:55","end_time":"18:35","cfid":"51362","course_id":4,"created_at":"2014-09-29T08:51:07.386Z","updated_at":"2014-09-29T08:51:07.392Z","current_enrollment":58,"enrollment_limit":57,"location_id":10,"instructor_id":16,"semester_id":1,"mode_of_instruction":"In-Person"},
+
+{"id":25,"days":"T, TH","start_time":"18:55","end_time":"18:35","cfid":"51370","course_id":4,"created_at":"2014-09-29T08:51:07.414Z","updated_at":"2014-09-29T08:51:07.420Z","current_enrollment":57,"enrollment_limit":57,"location_id":10,"instructor_id":17,"semester_id":1,"mode_of_instruction":"In-Person"},
+
+{"id":26,"days":null,"start_time":null,"end_time":null,"cfid":"51374","course_id":4,"created_at":"2014-09-29T08:51:07.446Z","updated_at":"2014-09-29T08:51:07.446Z","current_enrollment":null,"enrollment_limit":null,"location_id":null,"instructor_id":null,"semester_id":null,"mode_of_instruction":null},
+
+{"id":27,"days":null,"start_time":null,"end_time":null,"cfid":"47394","course_id":4,"created_at":"2014-09-29T08:51:07.468Z","updated_at":"2014-09-29T08:51:07.468Z","current_enrollment":null,"enrollment_limit":null,"location_id":null,"instructor_id":null,"semester_id":null,"mode_of_instruction":null},
+
+{"id":28,"days":"T, TH","start_time":"14:15","end_time":"14:05","cfid":"47424","course_id":4,"created_at":"2014-09-29T08:51:07.490Z","updated_at":"2014-09-29T08:51:07.495Z","current_enrollment":57,"enrollment_limit":57,"location_id":10,"instructor_id":20,"semester_id":1,"mode_of_instruction":"In-Person"},
+
+{"id":29,"days":"T, TH","start_time":"17:00","end_time":"17:40","cfid":"47427","course_id":4,"created_at":"2014-09-29T08:51:07.511Z","updated_at":"2014-09-29T08:51:07.517Z","current_enrollment":57,"enrollment_limit":57,"location_id":10,"instructor_id":20,"semester_id":1,"mode_of_instruction":"In-Person"},
+
+{"id":30,"days":"M, W","start_time":"14:15","end_time":"14:05","cfid":"47458","course_id":4,"created_at":"2014-09-29T08:51:07.538Z","updated_at":"2014-09-29T08:51:07.543Z","current_enrollment":32,"enrollment_limit":32,"location_id":7,"instructor_id":21,"semester_id":1,"mode_of_instruction":"In-Person"}  ]
 ~~~
