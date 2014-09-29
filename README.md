@@ -2,7 +2,7 @@
 
 This "pseudo-API" is being built with [Rails::API](https://github.com/rails-api/rails-api) to provide easier access to CUNYfirst course registration data using a JSON RESTful API. [This](https://www.youtube.com/watch?v=QSUnBPv4iQ0) video gives a quick explanation of what an API is.
 
-The current proof-of-concept is being hosted at on heroku.  It's (currently) filled with Queens College Fall 2014 Semester data taken from courses.qc.cuny.edu.
+The proof-of-concept is being hosted on [heroku](heroku.com).  It is (currently) filled with the Queens College Fall 2014 semester data taken from courses.qc.cuny.edu.
 
 Thus far the Institutions, Departments, Courses, Sections, Locations, Instructors, and Semesters resources have been created.  They can be accessed at these endpoints:
 -  http://cuny-first-papi.herokuapp.com/institutions
