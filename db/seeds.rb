@@ -160,7 +160,6 @@ rows.each do |row|
   location = Location.find_or_create_by(name: location_name, institution: qc) 
 
   section_cfid = row[1]
-  section_days = row[4].strip
   section_current_enrollment = row[8].to_i
   section_enrollment_limit = row[9].to_i
   section_mode_of_instruction = row[10].strip
@@ -192,7 +191,7 @@ rows.each do |row|
     if end_time_time.hour < 10
       section_end_time += "0"+end_time_time.hour.to_s
     else
-      section_end_time += start_time_time.hour.to_s
+      section_end_time += end_time_time.hour.to_s
     end
 
     if end_time_time.min < 10
@@ -202,8 +201,8 @@ rows.each do |row|
     end
 
   end
-  section = Section.find_or_create_by(cfid: section_cfid, course: course)
-  section.days = section_days
+  # section = Section.find_or_create_by(cfid: section_cfid, course: course)
+  section = Section.create(cfid: section_cfid, course: course)
   section.start_time = section_start_time unless section_start_time.empty?
   section.end_time = section_end_time unless section_end_time.empty?
   section.current_enrollment = section_current_enrollment
@@ -212,6 +211,31 @@ rows.each do |row|
   section.location = location
   section.instructor = instructor
   section.semester = fall2014
+
+  #e.g. ["T", "TH"] or ["SU"] or ["W", "F"] or ["&nbsp;"]
+  section_days = row[4].split(",")
+  section_days.collect!{|x| x.strip}
+
+  section.monday = true if section_days.include?("M")
+  section.tuesday = true if section_days.include?("T")
+  section.wednesday = true if section_days.include?("W")
+  section.thursday = true if section_days.include?("TH")
+  section.friday = true if section_days.include?("F")
+  section.saturday = true if section_days.include?("S")
+  section.sunday = true if section_days.include?("SU")
+  # if section_days.include?("SU") 
+  #   section.sunday = true
+  #   section.save
+  #   if section_cfid == "51316"
+  #     q = Section.find_by_cfid("51316")
+  #     puts section_days.include?("SU")
+  #     puts q.sunday
+  #   end
+  #   # puts section_cfid + " was set to true for sunday"
+  # end
+  # # puts section_days if section_cfid == "51316"
+  # puts section_days.include?("SU") if section_cfid == "51316"
+  
   section.save
 
 end

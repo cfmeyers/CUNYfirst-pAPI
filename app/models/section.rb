@@ -23,7 +23,7 @@ class Section < ActiveRecord::Base
   belongs_to :location
   belongs_to :instructor
   belongs_to :semester
-  validates_with HourMinuteValidator
+  # validates_with HourMinuteValidator
 
   scope :start_after, -> (start_after) { where("start_time > ?", start_after) }
   scope :start_before, -> (start_before) { where("start_time < ?", start_before) }
