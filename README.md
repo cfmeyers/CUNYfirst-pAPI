@@ -69,7 +69,7 @@ Notice the brackets on the end of include_days\[\] and exclude_days\[\].  This i
 
 -  [X]  Add ability to query with multiple parameters
 
--  [ ]  Add search-by-day parameters for sections resource
+-  [X]  Add search-by-day parameters for sections resource
 
 -  [ ]  Add pagination (so you can specify "I just want the first 30 courses")
 
