@@ -183,8 +183,6 @@ rows.each do |row|
     else
       section_start_time += ":"+start_time_time.min.to_s
     end
-  # else
-    # section_start_time = "99:99"
   end
   
   end_time_str = row[5].split("-")[1].strip   # "6:00 PM"
@@ -202,8 +200,6 @@ rows.each do |row|
     else
       section_end_time += ":"+end_time_time.min.to_s
     end
-  # else
-    # section_end_time = "99:99"
 
   end
   section = Section.find_or_create_by(cfid: section_cfid, course: course)
@@ -215,18 +211,9 @@ rows.each do |row|
   section.mode_of_instruction = section_mode_of_instruction
   section.location = location
   section.instructor = instructor
+  section.semester = fall2014
   section.save
 
 end
-puts Section.all.length
 
 
-# spreadsheet_cs_sections.each do |section| 
-#   sec = Section.new()
-#   sec.cfid = section[0]
-#   sec.days = section[1]
-#   sec.start_time = section[2]
-#   sec.end_time = section[3]
-#   sec.course = spreadsheet_cs_course
-#   sec.save
-# end
