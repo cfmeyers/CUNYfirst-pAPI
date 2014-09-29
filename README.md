@@ -36,7 +36,7 @@ message: "Resource not found"
 
 ##Sections Query API
 
-Sometimes you want to narrow down your request.  Maybe instead of getting all the sections, you just want the ones that start after 9:00 AM.  In that case, use http://cuny-first-papi.herokuapp.com/sections?start_after=4 .
+Sometimes you want to narrow down your request.  Maybe instead of getting all the sections, you just want the ones that start after 9:00 AM.  In that case, use http://cuny-first-papi.herokuapp.com/sections?start_after=09:00 .
 
 Notice it's just the the "sections" resource URL with a question mark and assertion (in this case, start_after=4).
 
