@@ -69,6 +69,8 @@ message: "Resource not found"
 
 -  [X]  Add error message if no resources returned
 
+-  [ ]  Clean up Sections controller filter logic a la http://www.justinweiss.com/blog/2014/02/17/search-and-filter-rails-models-without-bloating-your-controller/
+
 
 ###Add query parameters
 -  [X] "/sections?start_after=09:00"
