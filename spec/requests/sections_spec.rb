@@ -35,7 +35,6 @@ describe "Sections API" do
 
       body = JSON.parse(response.body)
       section_course_names = body.map { |m| m["course"]["name"] }
-      pp body[0]
 
       expect(section_course_names).to match_array(["Computer Science 101","Computer Science 101", "Computer Science 102"])
     end

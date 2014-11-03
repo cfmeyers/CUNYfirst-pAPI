@@ -61,6 +61,12 @@ The query parameters defined so far for the Section resource are (notice how all
 
 Notice the brackets on the end of include_days\[\] and exclude_days\[\].  This is a convention because you cannot pass an array in a GET request.
 
+##Verbose Mode
+
+If you're using the API to search for classes (sections), you'll probably want to see the course name, instructor name, room name, etc along with the section information.  Of course you can do this by making multiple calls using each of the id's returned, but an easier way is to use the "verbose=true" parameter: 
+
+-  verbose  (e.g. http://cuny-first-papi.herokuapp.com/sections?end_before=09:00&verbose=true)
+
 #TODO
 
 -  [X]  Add actual data from CUNYfirst database
