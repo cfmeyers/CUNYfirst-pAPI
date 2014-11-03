@@ -17,8 +17,19 @@ class SectionsController < ApplicationController
     @sections = @sections.open if params[:open].present? && params[:open]
     @sections = @sections.closed if params[:closed].present? && params[:closed]
 
+    if params[:verbose].present? && params[:verbose]
+      
+      render json: @sections, :include => [{course: {only:  [:name, :long_name, :department_id]}},
+                                           {instructor: {only:  [:first_name, :last_name]}},
+                                           {semester: {only:  [:name, :id]}},
+                                           {location: {only:  [:name, :institution_id]}}]
+      
+    else
+      render json: @sections
+    end
 
-    render json: @sections
+
+    # render json: @sections
     
     rescue ActiveRecord::RecordNotFound
       render json: {message: 'Resource not found'}, status: 404
