@@ -52,6 +52,7 @@ The query parameters defined so far for the Section resource are (notice how all
 -  end_after  (e.g. http://cuny-first-papi.herokuapp.com/sections?end_after=09:00)
 -  course_id (e.g. http://cuny-first-papi.herokuapp.com/sections?course_id=4)
 -  location_id (e.g. http://cuny-first-papi.herokuapp.com/sections?location_id=4)
+-  department_id (e.g. http://cuny-first-papi.herokuapp.com/sections?department_id=4)
 -  instructor_id (e.g. http://cuny-first-papi.herokuapp.com/sections?instructor_id=4)
 -  semester_id (e.g. http://cuny-first-papi.herokuapp.com/sections?semester_id=1)
 -  open (e.g. http://cuny-first-papi.herokuapp.com/sections?open=true)
