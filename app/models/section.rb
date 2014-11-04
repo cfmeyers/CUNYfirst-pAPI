@@ -46,6 +46,10 @@ class Section < ActiveRecord::Base
     semester = Semester.find(semester_id)
     where(semester: semester)
   }
+  scope :department_id, -> (department_id) {
+    Section.joins(:course).where("courses.department_id = "+department_id.to_s) 
+  }
+
   scope :open, -> {
     where("current_enrollment < enrollment_limit")
   }

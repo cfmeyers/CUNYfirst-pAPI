@@ -100,6 +100,35 @@ describe Section do
     expect(Section.include_days([:friday, :monday]).length).to equal(0)
   end
 
+  it "should return course_id scope properly" do
+
+    c1 = FactoryGirl.create :course, name: "Computer Science 101"
+    c2 = FactoryGirl.create :course, name: "Computer Science 102"
+
+    FactoryGirl.create :section, cfid: "777", course: c1
+    FactoryGirl.create :section, cfid: "888", course: c1
+    FactoryGirl.create :section, cfid: "999", course: c2
+    expect(Section.course_id(c1.id).length).to equal(2)
+    expect(Section.course_id(c2.id).length).to equal(1)
+  end
+  
+  it "should return department_id scope properly" do
+
+    d1 = FactoryGirl.create :department, name: "Computer Science"
+    d2 = FactoryGirl.create :department, name: "Mathematics"
+
+    
+    c1 = FactoryGirl.create :course, name: "Computer Science 101", department: d1
+    c2 = FactoryGirl.create :course, name: "Computer Science 102", department: d2
+    c3 = FactoryGirl.create :course, name: "Computer Science 103", department: d2
+
+    FactoryGirl.create :section, cfid: "777", course: c1
+    FactoryGirl.create :section, cfid: "888", course: c2
+    FactoryGirl.create :section, cfid: "999", course: c3
+    expect(Section.department_id(d1.id).length).to equal(1)
+    expect(Section.department_id(d2.id).length).to equal(2)
+  end
+
 
 
 

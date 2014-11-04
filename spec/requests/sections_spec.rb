@@ -18,7 +18,7 @@ describe "Sections API" do
     end
   end
   
-##VERBOSE TEST
+  ##VERBOSE TEST
   describe "GET /sections?verbose=true" do
     it "returns all the sections packaged with additional names" do
       
@@ -69,6 +69,43 @@ describe "Sections API" do
       expect(section_cfids).to match_array(["777", "888", "999"])
     end
   end
+
+  describe "GET /sections?department_id=1" do
+    it "returns all the sections associated with department_id 1" do
+
+      d1 = FactoryGirl.create :department, name: "Computer Science"
+      d2 = FactoryGirl.create :department, name: "Mathematics"
+
+
+      c1 = FactoryGirl.create :course, name: "Computer Science 101", department: d1
+      c2 = FactoryGirl.create :course, name: "Computer Science 102", department: d2
+      c3 = FactoryGirl.create :course, name: "Computer Science 103", department: d2
+
+      FactoryGirl.create :section, cfid: "777", course: c1
+      FactoryGirl.create :section, cfid: "888", course: c2
+      FactoryGirl.create :section, cfid: "999", course: c3
+      
+      get "/sections?department_id=#{d2.id}", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["888", "999"])
+
+      get "/sections", {}, { "Accept" => "application/json" }
+      expect(response.status).to eq 200
+
+      body = JSON.parse(response.body)
+      section_cfids = body.map { |m| m["cfid"] }
+
+      expect(section_cfids).to match_array(["777", "888", "999"])
+    end
+  end
+
+
+
+  
 
   describe "GET /sections?instructor_id=1" do
     it "returns all the sections associated with instructor_id 1" do
