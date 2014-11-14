@@ -5,6 +5,7 @@ This "pseudo-API" is being built with [Rails::API](https://github.com/rails-api/
 The proof-of-concept is being hosted on [heroku](heroku.com).  It is (currently) filled with the Queens College Fall 2014 semester data taken from courses.qc.cuny.edu.
 
 Thus far the Institutions, Departments, Courses, Sections, Locations, Instructors, and Semesters resources have been created.  They can be accessed at these endpoints:
+
 -  http://cuny-first-papi.herokuapp.com/institutions
 -  http://cuny-first-papi.herokuapp.com/departments
 -  http://cuny-first-papi.herokuapp.com/courses
